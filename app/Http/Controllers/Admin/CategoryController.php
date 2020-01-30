@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $page_name = "Category List";
+        $data = Category::all();
+        return view('admin.pages.categories.list', compact('page_name', 'data'));
     }
 
     /**
@@ -24,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $page_name = 'Category create';
+        return view('admin.pages.categories.create', compact('page_name'));
     }
 
     /**
@@ -35,7 +39,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ], [
+            'name.required' => 'The Name Field is required'
+        ]);
+
+        $category = new Category;
+        $category->name = $request->input('name');
+        $category->status = 1;
+        $category->save();
+
+        return redirect()->action('Admin\CategoryController@index')->with('success','Category created successfully');
     }
 
     /**
@@ -57,7 +72,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page_name = 'Edit category';
+        $category = Category::find($id);
+        return view('admin.pages.categories.edit', compact('page_name', 'category'));
     }
 
     /**
@@ -69,7 +86,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ], [
+            'name.required' => 'The Name Field is required'
+        ]);
+
+        $category = Category::find($id);
+        $category->name = $request->input('name');
+        $category->save();
+
+        return redirect()->action('Admin\CategoryController@index')->with('success','Category updated successfully');
     }
 
     /**
@@ -80,6 +107,28 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::where('id', $id)->delete();
+        return redirect()->action('Admin\CategoryController@index')->with('success','Category deleted successfully ');
+    }
+
+    /**
+     * Change status of a category
+     * 
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function status($id){
+        $category = Category::find($id);
+
+        if($category->status === 1){
+            $category->status = 0;
+            $category_status = 'unpublish successfully';
+        }else{
+            $category->status = 1;
+            $category_status = 'publish successfully';
+        }
+
+        $category->save();
+        return redirect()->action('Admin\CategoryController@index')->with('success','Category '.$category_status);
     }
 }

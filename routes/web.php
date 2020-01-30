@@ -48,6 +48,12 @@ Route::group(['prefix'=>'back', 'middleware' => 'auth'], function(){
 
   //Categories
   Route::get('/categories',['uses' => 'Admin\CategoryController@index', 'as' => 'category-list', 'middleware'=> 'permission:Category List|All']);
+  Route::get('/permission/create',['uses' =>'Admin\CategoryController@create', 'as' => 'category-create', 'middleware'=> 'permission:Category Add|All'] );
+  Route::post('/category/store','Admin\CategoryController@store');
+  Route::get('/category/edit/{id}', ['uses' => 'Admin\CategoryController@edit', 'as' => 'category-edit', 'middleware'=> 'permission:Category Update|All']);
+  Route::put('/category/edit/{id}', ['uses' => 'Admin\CategoryController@update', 'as' => 'category-update']);
+  Route::put('/category/status/{id}', ['uses' => 'Admin\CategoryController@status', 'as' => 'category-status', 'middleware' => 'permission:Category Update|All']);
+  Route::delete('/category/delete/{id}', ['uses' => 'Admin\CategoryController@destroy', 'as' => 'category-delete', 'middleware'=>'permission:Category Delete|All']);
 });
 Auth::routes();
 
