@@ -1,0 +1,54 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/','HomePageController@index');
+Route::get('/listing','ListingPageController@index');
+Route::get('/details','DetailsPageController@index');
+
+//Admin
+Route::group(['prefix'=>'back', 'middleware' => 'auth'], function(){
+  Route::get('/','Admin\DashboardController@index');
+  Route::get('/category','Admin\CategoryController@index');
+  Route::get('/category/create','Admin\CategoryController@create');
+  Route::get('/category/edit','Admin\CategoryController@edit');
+
+  //Permissions
+  Route::get('/permission', ['uses' => 'Admin\PermissionController@index', 'as' => 'permission-list', 'middleware'=> 'permission:Permission List|All']);
+  Route::get('/permission/create',['uses' =>'Admin\PermissionController@create', 'as' => 'permission-create', 'middleware'=> 'permission:Permission Add|All'] );
+  Route::post('/permission/store','Admin\PermissionController@store');
+  Route::get('/permission/edit/{id}', ['uses' => 'Admin\PermissionController@edit', 'as' => 'permission-edit', 'middleware'=> 'permission:Permission Update|All']);
+  Route::put('/permission/edit/{id}', ['uses' => 'Admin\PermissionController@update', 'as' => 'permission-update']);
+  Route::delete('/permission/delete/{id}', ['uses' => 'Admin\PermissionController@destroy', 'as' => 'permission-delete', 'middleware'=>'permission:Permission Delete|All']);
+
+  //Roles
+  Route::get('/roles',['uses' => 'Admin\RoleController@index', 'as' => 'role-list', 'middleware'=> 'permission:Role List|All'] );
+  Route::get('/roles/create',['uses' =>'Admin\RoleController@create', 'as' => 'role-create', 'middleware'=> 'permission:Role Add|All']);
+  Route::post('/roles/store','Admin\RoleController@store');
+  Route::get('/roles/edit/{id}', ['uses' => 'Admin\RoleController@edit', 'as' => 'role-edit', 'middleware'=> 'permission:Role Update|All']);
+  Route::put('/roles/edit/{id}', ['uses' => 'Admin\RoleController@update', 'as' => 'role-update']);
+  Route::delete('/roles/delete/{id}', ['uses' => 'Admin\RoleController@destroy', 'as' => 'role-delete', 'middleware'=> 'permission:Role Delete|All']);
+
+  //Authors
+  Route::get('/author',['uses' => 'Admin\AuthorController@index', 'as' => 'author-list', 'middleware'=> 'permission:	Author List|All']);
+  Route::get('/author/create',['uses' =>'Admin\AuthorController@create', 'as' => 'author-create', 'middleware'=> 'permission:Author Add|All'] );
+  Route::post('/author/store','Admin\AuthorController@store');
+  Route::get('/author/edit/{id}', ['uses' => 'Admin\AuthorController@edit', 'as' => 'author-edit', 'middleware'=> 'permission:Author Update|All']);
+  Route::put('/author/edit/{id}', ['uses' => 'Admin\AuthorController@update', 'as' => 'author-update']);
+  Route::delete('/author/delete/{id}', ['uses' => 'Admin\AuthorController@destroy', 'as' => 'author-delete', 'middleware'=> 'Author Delete']);
+
+  //Categories
+  Route::get('/categories',['uses' => 'Admin\CategoryController@index', 'as' => 'category-list', 'middleware'=> 'permission:Category List|All']);
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
