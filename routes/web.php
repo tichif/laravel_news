@@ -54,6 +54,11 @@ Route::group(['prefix'=>'back', 'middleware' => 'auth'], function(){
   Route::put('/category/edit/{id}', ['uses' => 'Admin\CategoryController@update', 'as' => 'category-update']);
   Route::put('/category/status/{id}', ['uses' => 'Admin\CategoryController@status', 'as' => 'category-status', 'middleware' => 'permission:Category Update|All']);
   Route::delete('/category/delete/{id}', ['uses' => 'Admin\CategoryController@destroy', 'as' => 'category-delete', 'middleware'=>'permission:Category Delete|All']);
+
+  // Posts
+  Route::get('/posts',['uses' => 'Admin\PostsController@index', 'as' => 'post-list', 'middleware'=> 'permission:Post List|All']);
+  Route::get('/posts/create',['uses' =>'Admin\PostsController@create', 'as' => 'post-create', 'middleware'=> 'permission:Post Add|All'] );
+  Route::post('/posts/store','Admin\PostsController@store');
 });
 Auth::routes();
 

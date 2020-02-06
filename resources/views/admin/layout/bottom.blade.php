@@ -3,6 +3,10 @@
     <script src="{{asset('admin/assets/js/plugins.js')}}"></script>
     <script src="{{asset('admin/assets/js/main.js')}}"></script>
 
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/adapters/jquery.js') }}"></script>
+    
+
 
     <script src="{{asset('admin/assets/js/lib/chart-js/Chart.bundle.js')}}"></script>
     <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
@@ -22,6 +26,16 @@
             });
         });
       </script>
+
+<script>
+    jQuery('textarea.my-editor').ckeditor({
+              filebrowserImageBrowseUrl: '{{ url("/public") }}/laravel-filemanager?type=Images',
+              filebrowserImageUploadUrl: '{{ url("/public") }}/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+              filebrowserBrowseUrl: '{{ url("/public") }}/laravel-filemanager?type=Files',
+              filebrowserUploadUrl: '{{ url("/public") }}/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+          });
+  </script>
+
     
     <script>
         ( function ( $ ) {

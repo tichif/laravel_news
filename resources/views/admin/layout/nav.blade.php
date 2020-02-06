@@ -32,6 +32,9 @@
                 @permission(['Category List','All'])
                     <li><a href="{{ url('/back/categories') }}"><i class="menu-icon fa fa-bars"></i> Categories</a></li>
                 @endpermission
+                @permission(['Post List','All'])
+                    <li><a href="{{ url('/back/posts') }}"><i class="menu-icon fa fa-pencil-square-o"></i> Posts</a></li>
+                @endpermission
 
               
             </ul>
