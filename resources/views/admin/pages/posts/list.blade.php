@@ -50,6 +50,7 @@
                   <th>Author</th>
                   <th>Total Views</th>
                   <th>Status</th>
+                  <th>Hot News</th>
                   <th>Options</th>
                 </tr>
               </thead>
@@ -58,22 +59,30 @@
                   <tr>
                     <td> {{ $post->id }} </td>
                     <td> 
-                      @if (file_exists(public_path('/posts/').$row->thumb_image))
-                        <img src="{{ asset('public/posts') }}/{{ $row->thumb_image }}" class="img-responsive">
+                      @if (file_exists(public_path('/posts/').$post->thumb_image))
+                        <img src="{{ asset('/posts') }}/{{ $post->thumb_image }}" class="img-responsive">
                       @else
                           No image
                       @endif  
                     </td>
                     <td> {{ $post->title }} </td>
-                    <td>  </td>
-                    <td> {{ $post->view_count }} </td>
+                    <td> {{ $post->creator->name }}  </td>
                     <td> {{ $post->view_count }} </td>
                     <td> 
-                      {{ Form::open(['method'=> 'PUT', 'url'=> ['/back/posts/status/'.$category->id], 'style' => 'display:inline' ]) }}
+                      {{ Form::open(['method'=> 'PUT', 'url'=> ['/back/posts/status/'.$post->id], 'style' => 'display:inline' ]) }}
                         @if ($post->status === 1)
                           {{ Form::submit('Unpublish',['class' => 'btn btn-warning']) }}                              
                           @else
                           {{ Form::submit('Publish',['class' => 'btn btn-success']) }}
+                        @endif
+                      {{ Form::close() }}  
+                    </td>
+                    <td> 
+                      {{ Form::open(['method'=> 'PUT', 'url'=> ['/back/posts/hot_news/status/'.$post->id], 'style' => 'display:inline' ]) }}
+                        @if ($post->hot_news === 1)
+                          {{ Form::submit('No',['class' => 'btn btn-warning']) }}                              
+                          @else
+                          {{ Form::submit('Yes',['class' => 'btn btn-success']) }}
                         @endif
                       {{ Form::close() }}  
                     </td>

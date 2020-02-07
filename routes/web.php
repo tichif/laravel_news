@@ -59,6 +59,11 @@ Route::group(['prefix'=>'back', 'middleware' => 'auth'], function(){
   Route::get('/posts',['uses' => 'Admin\PostsController@index', 'as' => 'post-list', 'middleware'=> 'permission:Post List|All']);
   Route::get('/posts/create',['uses' =>'Admin\PostsController@create', 'as' => 'post-create', 'middleware'=> 'permission:Post Add|All'] );
   Route::post('/posts/store','Admin\PostsController@store');
+  Route::put('/posts/status/{id}', ['uses' => 'Admin\PostsController@status', 'as' => 'post-status', 'middleware' => 'permission:Post Update|All']);
+  Route::put('posts/hot_news/status/{id}', ['uses' => 'Admin\PostsController@hot_news', 'as' => 'post-hot-news', 'middleware' => 'permission:Post Update|All']);
+  Route::get('/posts/edit/{id}', ['uses' => 'Admin\PostsController@edit', 'as' => 'post-edit', 'middleware'=> 'permission:Post Update|All']);
+  Route::put('/posts/edit/{id}', ['uses' => 'Admin\PostsController@update', 'as' => 'post-update']);
+  Route::delete('/posts/delete/{id}', ['uses' => 'Admin\PostsController@destroy', 'as' => 'post-delete', 'middleware'=>'permission:Post Delete|All']);
 });
 Auth::routes();
 

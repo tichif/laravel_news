@@ -22,7 +22,7 @@
                 @endif
                 <hr>
 
-                {{ Form::open(['url'=> 'back/posts/store', 'method'=> "POST",'enctype'=>'multipart/form-data']) }}
+                {{ Form::model($post,['route'=> ['post-update', $post->id], 'method'=> "PUT",'enctype'=>'multipart/form-data']) }}
 
                   <div class="form-group">
                     {{Form::label('title','Title',['class'=> 'control-label mb-1'])}}
@@ -31,7 +31,7 @@
 
                   <div class="form-group">
                     {{Form::label('category','Category',['class'=> 'control-label mb-1'])}}
-                    {{Form::select('category_id',$categories,null,['class'=> 'form-control myselect', 'data-placeholder'=> "Select Category"])}}    
+                    {{Form::select('category_id',$categories,$post->category_id,['class'=> 'form-control myselect', 'data-placeholder'=> "Select Category"])}}    
                   </div>
 
                   <div class="form-group">
@@ -54,7 +54,7 @@
                   <div>
                       <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                           <i class="fa fa-lock fa-lg"></i>&nbsp;
-                          <span id="payment-button-amount">Submit</span>
+                          <span id="payment-button-amount">Update</span>
                           <span id="payment-button-sending" style="display:none;">Sending…</span>
                       </button>
                   </div>
