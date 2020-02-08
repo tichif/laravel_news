@@ -70,6 +70,10 @@ Route::group(['prefix'=>'back', 'middleware' => 'auth'], function(){
   Route::get('/comments/reply/{id}',['uses' =>'Admin\CommentsController@create', 'as' => 'comment-create', 'middleware'=> 'permission:Comment Reply|All'] );
   Route::post('/comments/reply/store','Admin\CommentsController@store');
   Route::put('/comments/status/{id}', ['uses' => 'Admin\CommentsController@status', 'as' => 'comment-status']);
+
+  // Settings
+  Route::get('/settings', ['uses' => 'Admin\SettingsController@index', 'as' => 'setting', 'middleware'=> 'permission:System Settings|All']);
+  Route::put('/settings/update', ['uses' => 'Admin\SettingsController@update', 'as' => 'setting-update']);
 });
 Auth::routes();
 
