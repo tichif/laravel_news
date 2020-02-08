@@ -35,9 +35,6 @@
                 @endif
                   <div class="card-header">
                     <strong class="card-title">{{ $page_name }}</strong>
-                    @permission(['Post Add','All'])
-                      <a href="{{url('/back/posts/create')}}" class="btn btn-primary pull-right">Create</a>
-                    @endpermission
                   </div>
                   <div class="card-body">
                     
@@ -45,32 +42,23 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Image</th>
-                  <th>Title</th>
-                  <th>Author</th>
-                  <th>Total Views</th>
+                  <th>Name</th>
+                  <th>Post</th>
+                  <th>Comment</th>
                   <th>Status</th>
-                  <th>Hot News</th>
                   <th>Options</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($data as $i =>$post)
+                @foreach ($data as $i=>$comment)
                   <tr>
                     <td> {{ ++$i }} </td>
+                    <td> {{ $comment->name }} </td>
+                    <td> {{ $comment->post->title }}  </td>
+                    <td> {{ $comment->comment }} </td>
                     <td> 
-                      @if (file_exists(public_path('/posts/').$post->thumb_image))
-                        <img src="{{ asset('/posts') }}/{{ $post->thumb_image }}" class="img-responsive">
-                      @else
-                          No image
-                      @endif  
-                    </td>
-                    <td> {{ $post->title }} </td>
-                    <td> {{ $post->creator->name }}  </td>
-                    <td> {{ $post->view_count }} </td>
-                    <td> 
-                      {{ Form::open(['method'=> 'PUT', 'url'=> ['/back/posts/status/'.$post->id], 'style' => 'display:inline' ]) }}
-                        @if ($post->status === 1)
+                      {{ Form::open(['method'=> 'PUT', 'url'=> ['/back/comments/status/'.$comment->id], 'style' => 'display:inline' ]) }}
+                        @if ($comment->status === 1)
                           {{ Form::submit('Unpublish',['class' => 'btn btn-warning']) }}                              
                           @else
                           {{ Form::submit('Publish',['class' => 'btn btn-success']) }}
@@ -78,26 +66,9 @@
                       {{ Form::close() }}  
                     </td>
                     <td> 
-                      {{ Form::open(['method'=> 'PUT', 'url'=> ['/back/posts/hot_news/status/'.$post->id], 'style' => 'display:inline' ]) }}
-                        @if ($post->hot_news === 1)
-                          {{ Form::submit('No',['class' => 'btn btn-warning']) }}                              
-                          @else
-                          {{ Form::submit('Yes',['class' => 'btn btn-success']) }}
-                        @endif
-                      {{ Form::close() }}  
-                    </td>
-                    <td> 
-                      @permission(['Comment View','All'])
-                        <a href="{{ url('/back/comments/'.$post->id) }}" class="btn btn-info mr-3">Comments</a>
-                      @endpermission
-                      @permission(['Post Update','All'])
-                        <a href="{{ url('/back/posts/edit/'.$post->id) }}" class="btn btn-primary mr-3">Edit</a>
-                      @endpermission
-                      @permission(['Post Delete','All'])
-                        {{ Form::open(['method'=> 'DELETE', 'url'=> ['/back/posts/delete/'.$post->id], 'style' => 'display:inline' ]) }}
-                          {{ Form::submit('Delete',['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
-                      @endpermission
+                      @permission(['Comment Reply','All'])
+                        <a href="{{ url('/back/comments/reply/'.$comment->post_id) }}" class="btn btn-info mr-3">Reply</a>
+                       @endpermission
                     </td>
                   </tr>
                 @endforeach                

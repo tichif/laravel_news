@@ -64,6 +64,12 @@ Route::group(['prefix'=>'back', 'middleware' => 'auth'], function(){
   Route::get('/posts/edit/{id}', ['uses' => 'Admin\PostsController@edit', 'as' => 'post-edit', 'middleware'=> 'permission:Post Update|All']);
   Route::put('/posts/edit/{id}', ['uses' => 'Admin\PostsController@update', 'as' => 'post-update']);
   Route::delete('/posts/delete/{id}', ['uses' => 'Admin\PostsController@destroy', 'as' => 'post-delete', 'middleware'=>'permission:Post Delete|All']);
+
+  //Comments
+  Route::get('/comments/{id}', ['uses' => 'Admin\CommentsController@index', 'as' => 'comment-list', 'middleware'=> 'permission:Comment View|All']);
+  Route::get('/comments/reply/{id}',['uses' =>'Admin\CommentsController@create', 'as' => 'comment-create', 'middleware'=> 'permission:Comment Reply|All'] );
+  Route::post('/comments/reply/store','Admin\CommentsController@store');
+  Route::put('/comments/status/{id}', ['uses' => 'Admin\CommentsController@status', 'as' => 'comment-status']);
 });
 Auth::routes();
 
