@@ -52,9 +52,9 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($authors as $author)
+                @foreach ($authors as $i => $author)
                   <tr>
-                    <td> {{ $author->id }} </td>
+                    <td> {{ ++$i }} </td>
                     <td> {{ $author->name }} </td>
                     <td> {{ $author->email }} </td>
                     <td> 

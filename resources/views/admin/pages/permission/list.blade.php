@@ -52,9 +52,9 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($data as $permission)
+                @foreach ($data as $i => $permission)
                   <tr>
-                    <td> {{ $permission->id }} </td>
+                    <td> {{ ++$i }} </td>
                     <td> {{ $permission->name }} </td>
                     <td> {{ $permission->display_name }} </td>
                     <td> {{ $permission->description }} </td>

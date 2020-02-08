@@ -53,9 +53,9 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($data as $role)
+                @foreach ($data as $i => $role)
                   <tr>
-                    <td> {{ $role->id }} </td>
+                    <td> {{ ++$i }} </td>
                     <td> {{ $role->name }} </td>
                     <td> {{ $role->display_name }} </td>
                     <td> {{ $role->description }} </td>

@@ -51,9 +51,9 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($data as $category)
+                @foreach ($data as $i => $category)
                   <tr>
-                    <td> {{ $category->id }} </td>
+                    <td> {{ ++$i }} </td>
                     <td> {{ $category->name }} </td>
                     <td>
                       {{ Form::open(['method'=> 'PUT', 'url'=> ['/back/category/status/'.$category->id], 'style' => 'display:inline' ]) }}
