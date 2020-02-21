@@ -10,4 +10,9 @@ class Post extends Model
     public function creator(){
         return $this->belongsTo('App\User', 'created_by', 'id');
     }
+
+    //Creating a method witch allows relationship with Comment model
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 }

@@ -41,18 +41,9 @@
               <div class="row">
                   <div class="col-xs-4">
                       <ul class="list-unstyled left">
-                          <li><a href="#">Mobile</a></li>
-                          <li><a href="#">Tablet</a></li>
-                          <li><a href="#">Gadgets</a></li>
-                          <li><a href="#">Design</a></li>
-                          <li><a href="#">Camera</a></li>
-                          <li><a href="#">Apps</a></li>
-                          <li><a href="#">Login</a></li>
-                          <li><a href="#">About Us</a></li>
-                          <li><a href="#">Membership</a></li>
-                          <li><a href="#">Blog</a></li>
-                          <li><a href="#">Job</a></li>
-                          <li><a href="#">SiteMap</a></li>
+                        @foreach ($shareData['categories'] as $category)
+                        <li><a href="{{ url('/category') }}/{{ $category->id }}">{{ $category->name }}</a></li>
+                      @endforeach
                       </ul>
                   </div>
                   <div class="col-xs-8">

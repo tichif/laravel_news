@@ -231,10 +231,10 @@ class PostsController extends Controller
 
         if($post->hot_news === 1){
             $post->hot_news = 0;
-            $post_status = 'set at hot news successfully';
+            $post_status = 'unset at hot news successfully';
         }else{
             $post->hot_news = 1;
-            $post_status = 'unset at hot news successfully';
+            $post_status = 'set at hot news successfully';
         }
 
         $post->save();

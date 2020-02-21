@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Setting;
+use App\Category;
+use App\User;
+use App\Post;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,12 +43,33 @@ class AppServiceProvider extends ServiceProvider
                 $admin_logo = $setting->value;
             }
         }
+
+        $categories = Category::where('status',1)->get();
+        $authors = User::where('id','!=',2)->get();
+        //get 5 posts with the most views
+        $most_viewed = Post::with(['creator','comments'])
+                            ->where('status',1)
+                            ->orderBy('view_count','DESC')
+                            ->limit(5)
+                            ->get();
+
+        // get 5 posts with most comments 
+        $most_commented = Post::withCount('comments')
+                            ->where('status',1)
+                            ->orderBy('comments_count','DESC')
+                            ->limit(5)
+                            ->get();
+
         // data sharing to all views
         $shareData = [
             'system_name' => $system_name,
             'favicon' => $favicon,
             'front_logo' => $front_logo,
             'admin_logo' => $admin_logo,
+            'categories' => $categories,
+            'authors' => $authors,
+            'most_viewed' => $most_viewed,
+            'most_commented' => $most_commented,
         ];
         view()->share('shareData',$shareData);
     }
