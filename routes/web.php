@@ -12,7 +12,9 @@
 */
 
 Route::get('/','HomePageController@index');
-Route::get('/listing','ListingPageController@index');
+// Route::get('/listing','ListingPageController@index');
+Route::get('/category/{id}','ListingPageController@index');
+Route::get('/author/{id}','ListingPageController@index');
 Route::get('/details','DetailsPageController@index');
 
 //Admin

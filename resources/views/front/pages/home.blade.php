@@ -166,7 +166,7 @@
                                 <a href="{{ url('/details') }}/{{ $item->slug }}">{{ $item->title }}</a>
                             </h3>
                             <span class="media-date">
-                                <a href="#">{{ date('F j,Y', strtotime($item->created_at)) }}</a>,
+                                <a href="{{ url('/details') }}/{{ $item->slug }}">{{ date('F j,Y', strtotime($item->created_at)) }}</a>,
                                   by: <a href="{{ url('/author') }}/{{ $item->creator->id }}">{{ $item->creator->name }}</a>
                             </span>
 
@@ -260,23 +260,7 @@
 </div>
 <!-- Most Commented News -->
 
-<div class="widget m30">
-  <div class="widget_title widget_black">
-      <h2><a href="#">Editor Corner</a></h2>
-  </div>
-  <div class="widget_body"><img class="img-responsive left" src="{{asset('front/img/editor.jpg')}}"
-                                alt="Generic placeholder image">
 
-      <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C
-          users after installed base benefits. Dramatically visualize customer directed convergence without</p>
-
-      <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C
-          users after installed base benefits. Dramatically visualize customer directed convergence without
-          revolutionary ROI.</p>
-      <button class="btn pink">Read more</button>
-  </div>
-</div>
-<!-- Editor News -->
 
 <div class="widget hidden-xs m30">
   <img class="img-responsive add_img" src="{{asset('front/img/right_add7.jpg')}}" alt="add_one">
@@ -289,23 +273,7 @@
 </div>
 <!--Advertisement -->
 
-<div class="widget m30">
-  <div class="widget_title widget_black">
-      <h2><a href="#">Readers Corner</a></h2>
-  </div>
-  <div class="widget_body"><img class="img-responsive left" src="{{asset('front/img/reader.jpg.jpg')}}"
-                                alt="Generic placeholder image">
 
-      <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C
-          users after installed base benefits. Dramatically visualize customer directed convergence without</p>
-
-      <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C
-          users after installed base benefits. Dramatically visualize customer directed convergence without
-          revolutionary ROI.</p>
-      <button class="btn pink">Read more</button>
-  </div>
-</div>
-<!--  Readers Corner News -->
 
 <div class="widget hidden-xs m30">
   <img class="img-responsive widget_img" src="{{asset('front/img/podcast.jpg')}}" alt="add_one">
