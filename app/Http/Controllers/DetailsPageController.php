@@ -18,6 +18,8 @@ class DetailsPageController extends Controller
         $post->view_count = $post->view_count +1;
         $post->save();
 
+        $post_id = $post->id ;
+
         $related_news =  Post::with(['creator','comments','category'])
                              ->where('status',1)
                              ->where('id','!=', $post->id)
@@ -30,6 +32,26 @@ class DetailsPageController extends Controller
         $comments = Comment::where('post_id',$post->id)
                             ->get();                    
 
-        return view('front.pages.details', compact('post', 'related_news','comments'));
+        return view('front.pages.details', compact('post', 'related_news','comments','post_id'));
+    }
+
+    public function comment(Request $request){
+        $this->validate($request,[
+            'name' => 'required',
+            'comment' => 'required',
+            'post_id' => 'required',
+        ],[
+            'name.required' => 'The name field cannot be blank',
+            'comment.required' => 'The name field cannot be blank',
+        ]);
+
+        $comment = new Comment;
+        $comment->name = $request->name;
+        $comment->comment = $request->comment;
+        $comment->post_id = $request->post_id;
+        $comment->status = 1;
+        $comment->save();
+
+        return back();
     }
 }

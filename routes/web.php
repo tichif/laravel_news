@@ -17,6 +17,7 @@ Route::get('/category/{id}','ListingPageController@index');
 Route::get('/author/{id}','ListingPageController@index');
 Route::get('/details/{slug}', 'DetailsPageController@index');
 // Route::get('/details','DetailsPageController@index');
+Route::post('/comments', 'DetailsPageController@comment');
 
 //Admin
 Route::group(['prefix'=>'back', 'middleware' => 'auth'], function(){

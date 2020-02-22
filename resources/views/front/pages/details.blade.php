@@ -111,19 +111,21 @@
       </div>
       <!-- entity_title -->
   @foreach ($comments as $comment)
-    <div class="media">
-        <div class="media-left">
-            <a href="#">
-                <img alt="64x64" width="64" height="64" class="media-object" data-src="{{ asset('/front/img/user.png') }}"
-                    src="{{ asset('/front/img/user.png') }}" data-holder-rendered="true">
-            </a>
-        </div>
-        <div class="media-body">
-            <h2 class="media-heading"><a href="#">{{ $comment->name }}</a></h2>
-            {{ $comment->comment }}
-        </div>
+      @if ($comment->status === 1)
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img alt="64x64" width="64" height="64" class="media-object" data-src="{{ asset('/front/img/user.png') }}"
+                        src="{{ asset('/front/img/user.png') }}" data-holder-rendered="true">
+                </a>
+            </div>
+            <div class="media-body">
+                <h2 class="media-heading"><a href="#">{{ $comment->name }}</a></h2>
+                {{ $comment->comment }}
+            </div>
 
-    </div>
+        </div>
+      @endif
   @endforeach
       
       <!-- media end -->
@@ -139,15 +141,16 @@
       <!--Entity Title -->
   
       <div class="entity_comment_from">
-          <form>
+          <form method="post" action="{{ url('/comments') }}">
+            {{ csrf_field() }}
+            <div class="form-group comment">
+                <input type="hidden" name="post_id" value="{{ $post_id }}" >
+            </div>
               <div class="form-group">
-                  <input type="text" class="form-control" id="inputName" placeholder="Name">
-              </div>
-              <div class="form-group">
-                  <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                  <input type="text" class="form-control" name="name" placeholder="Name">
               </div>
               <div class="form-group comment">
-                  <textarea class="form-control" id="inputComment" placeholder="Comment"></textarea>
+                  <textarea class="form-control" name="comment" placeholder="Comment"></textarea>
               </div>
   
               <button type="submit" class="btn btn-submit red">Submit</button>
