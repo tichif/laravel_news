@@ -7,11 +7,11 @@
   <div class="col-md-8">
   <div class="entity_wrapper">
       <div class="entity_title">
-          <h1><a href="#">Chevrolet car-saving technology delivers 'superhuman' sight when you need it most</a></h1>
+          <h1><a href="{{ url('/details') }}/{{ $post->slug }}">{{ $post->title }}</a></h1>
       </div>
       <!-- entity_title -->
   
-      <div class="entity_meta"><a href="#" target="_self">10Aug- 2015</a>, by: <a href="#" target="_self">Eric joan</a>
+      <div class="entity_meta"><a href="{{ url('/details') }}/{{ $post->slug }}">{{ date('F j,Y', strtotime($post->created_at)) }}</a>, by: <a href="{{ url('/author') }}/{{ $post->creator->id }}">{{ $post->creator->name }}</a>
       </div>
       <!-- entity_meta -->
   
@@ -25,9 +25,9 @@
       <!-- entity_rating -->
   
       <div class="entity_social">
-          <a href="#" class="icons-sm sh-ic">
-              <i class="fa fa-share-alt"></i>
-              <b>424</b> <span class="share_ic">Shares</span>
+          <a href="{{ url('/details') }}/{{ $post->slug }}" class="icons-sm sh-ic">
+              <i class="fa fa-eye"></i>
+              <b>{{ $post->view_count }}</b> <span class="share_ic">Views</span>
           </a>
           <a href="#" class="icons-sm fb-ic"><i class="fa fa-facebook"></i></a>
           <!--Twitter-->
@@ -42,66 +42,26 @@
       <!-- entity_social -->
   
       <div class="entity_thumb">
-          <img class="img-responsive" src="{{asset('front/img/category_img_top.jpg')}}" alt="feature-top">
+          <img class="img-responsive" src="{{ asset('/posts') }}/{{ $post->main_image }}" alt="{{ $post->title }}">
       </div>
       <!-- entity_thumb -->
   
       <div class="entity_content">
           <p>
-              But I must explain to you how all this mistaken idea of denouncing pleasure and praising
-              pain was born and I will give you a complete account of the system, and expound the
-              actual teachings of the great explorer of the truth, the master-builder of human
-              happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure,
-              but because those who do not know how to pursue pleasure rationally encounter
-              consequences that are extremely painful.
+            {{ $post->short_description }}
           </p>
-  
+    
           <p>
-              Nor again is there anyone who loves or pursues or desires to obtain pain of itself,
-              because it is pain, but because occasionally circumstances occur in which toil and pain
-              can procure him some great pleasure. To take a trivial example, which of us ever
-              undertakes laborious physical exercise, except to obtain some advantage from it?
-          </p>
-  
-          <blockquote class="pull-left">But I must explain to you how all this mistaken idea of denouncing pleasure
-          </blockquote>
-          <p> But who has any right to find fault with a man who chooses to enjoy a pleasure that has
-              no annoying consequences, or one who avoids a pain that produces no resultant pleasure?
-              On the other hand, we denounce with righteous indignation and dislike men who are so
-              beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire,
-              that they cannot foresee.Nor again is there anyone who loves or pursues or desires to
-              obtain pain of itself, because it is pain, but because occasionally circumstances occur
-              in which toil and pain can procure him some great pleasure. To take a trivial example,
-              which of us ever undertakes laborious physical exercise, except to obtain some advantage
-              from it? Nor again is there anyone who loves or pursues or desires to obtain pain of
-              itself, because it is pain, but because occasionally circumstances occur in which toil
-              and pain can procure him some great pleasure. To take a trivial example, which of us
-              ever
-          </p>
-  
-          <p>
-              But I must explain to you how all this mistaken idea of denouncing pleasure and praising
-              pain was born and I will give you a complete account of the system, and expound the
-              actual teachings of the great explorer of the truth, the master-builder of human
-              happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure,
-              but because those who do not know how to pursue pleasure rationally encounter
-              consequences that are extremely painful.
+              {!! $post->description !!}
           </p>
       </div>
       <!-- entity_content -->
   
       <div class="entity_footer">
-          <div class="entity_tag">
-              <span class="blank"><a href="#">Tech</a></span>
-              <span class="blank"><a href="#">Transport</a></span>
-              <span class="blank"><a href="#">Mobile</a></span>
-              <span class="blank"><a href="#">Gadgets</a></span>
-          </div>
-          <!-- entity_tag -->
   
           <div class="entity_social">
-              <span><i class="fa fa-share-alt"></i>424 <a href="#">Shares</a> </span>
-              <span><i class="fa fa-comments-o"></i>4 <a href="#">Comments</a> </span>
+              <span><i class="fa fa-eye"></i>{{ $post->view_count }} Views</a> </span>
+              <span><i class="fa fa-comments-o"></i>{{ count($post->comments) }} Comments</a> </span>
           </div>
           <!-- entity_social -->
   
@@ -118,165 +78,59 @@
       <!-- entity_title -->
   
       <div class="row">
-          <div class="col-md-6">
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"><img class="media-object" src="assets/img/cat-mobi-sm1.jpg"
-                                       alt="Generic placeholder image"></a>
-                  </div>
-                  <div class="media-body">
-                      <span class="tag purple"><a href="category.html" target="_self">Mobile</a></span>
-  
-                      <h3 class="media-heading"><a href="single.html" target="_self">Apple launches photo-centric wrist
-                          watch for Android</a></h3>
-                      <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-  
-                      <div class="media_social">
-                          <span><a href="#"><i class="fa fa-share-alt"></i>424</a> Shares</span>
-                          <span><a href="#"><i class="fa fa-comments-o"></i>4</a> Comments</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"><img class="media-object" src="{{asset('front/img/cat-mobi-sm3.jpg')}}"
-                                       alt="Generic placeholder image"></a>
-                  </div>
-                  <div class="media-body">
-                      <span class="tag purple"><a href="category.html" target="_self">Mobile</a></span>
-  
-                      <h3 class="media-heading"><a href="single.html" target="_self">The Portable Charger or data
-                          cable</a></h3>
-                      <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-  
-                      <div class="media_social">
-                          <span><a href="#"><i class="fa fa-share-alt"></i>424</a> Shares</span>
-                          <span><a href="#"><i class="fa fa-comments-o"></i>4</a> Comments</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-6">
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"><img class="media-object" src="{{asset('front/img/cat-mobi-sm2.jpg')}}"
-                                       alt="Generic placeholder image"></a>
-                  </div>
-                  <div class="media-body">
-                      <span class="tag purple"><a href="category.html" target="_self">Mobile</a></span>
-  
-                      <h3 class="media-heading"><a href="single.html" target="_self">Iphone 6 launches white & Grey
-                          colors handset</a></h3>
-                      <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-  
-                      <div class="media_social">
-                          <span><a href="#"><i class="fa fa-share-alt"></i>424</a> Shares</span>
-                          <span><a href="#"><i class="fa fa-comments-o"></i>4</a> Comments</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#"><img class="media-object" src="{{asset('front/img/cat-mobi-sm4.jpg')}}"
-                                       alt="Generic placeholder image"></a>
-                  </div>
-                  <div class="media-body">
-                      <span class="tag purple"><a href="category.html" target="_self">Mobile</a></span>
-                      <a href="single.html" target="_self"><h3 class="media-heading">Fully new look slim handset
-                          like</h3></a>
-                      <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-  
-                      <div class="media_social">
-                          <span><a href="#"><i class="fa fa-share-alt"></i>424</a> Shares</span>
-                          <span><a href="#"><i class="fa fa-comments-o"></i>4</a> Comments</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          @foreach ($related_news as $post)
+            <div class="col-md-6">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="{{ url('/details') }}/{{ $post->slug }}"><img class="media-object" src="{{ asset('/posts') }}/{{ $post->thumb_image }}" alt="{{ $post->title }}"></a>
+                    </div>
+                    <div class="media-body">
+                        <span class="tag purple"><a href="{{ url('/category') }}/{{ $post->category_id }}">{{ $post->category->name }}</a></span>
+
+                        <h3 class="media-heading"><a href="{{ url('/details') }}/{{ $post->slug }}">{{ $post->title }}</a></h3>
+                        <span class="media-date"><a href="{{ url('/details') }}/{{ $post->slug }}">{{ date('F j,Y', strtotime($post->created_at)) }}</a>,  by:  <a href="{{ url('/author') }}/{{ $post->creator->id }}">{{ $post->creator->name }}</a></span>
+
+                        <div class="media_social">
+                            <span><i class="fa fa-eye"></i>{{ $post->view_count }} Views</a> </span>
+                            <span><i class="fa fa-comments-o"></i>{{ count($post->comments) }} Comments</a> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          @endforeach
+          
       </div>
   </div>
   <!-- Related news -->
   
-  <div class="widget_advertisement">
-      <img class="img-responsive" src="{{asset('front/img/category_advertisement.jpg')}}" alt="feature-top">
-  </div>
-  <!--Advertisement-->
+
   
   <div class="readers_comment">
       <div class="entity_inner__title header_purple">
           <h2>Readers Comment</h2>
       </div>
       <!-- entity_title -->
-  
-      <div class="media">
-          <div class="media-left">
-              <a href="#">
-                  <img alt="64x64" class="media-object" data-src="{{asset('front/img/reader_img1.jpg')}}"
-                       src="{{asset('front/img/reader_img1.jpg')}}" data-holder-rendered="true">
-              </a>
-          </div>
-          <div class="media-body">
-              <h2 class="media-heading"><a href="#">Sr. Ryan</a></h2>
-              But who has any right to find fault with a man who chooses to enjoy a pleasure that has
-              no annoying consequences, or one who avoids a pain that produces no resultant pleasure?
-  
-              <div class="entity_vote">
-                  <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                  <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                  <a href="#"><span class="reply_ic">Reply </span></a>
-              </div>
-              <div class="media">
-                  <div class="media-left">
-                      <a href="#">
-                          <img alt="64x64" class="media-object" data-src="{{asset('front/img/reader_img2.jpg')}}"
-                               src="{{asset('front/img/reader_img2.jpg')}}" data-holder-rendered="true">
-                      </a>
-                  </div>
-                  <div class="media-body">
-                      <h2 class="media-heading"><a href="#">Admin</a></h2>
-                      But who has any right to find fault with a man who chooses to enjoy a pleasure
-                      that has no annoying consequences, or one who avoids a pain that produces no
-                      resultant pleasure?
-  
-                      <div class="entity_vote">
-                          <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                          <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                          <a href="#"><span class="reply_ic">Reply </span></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-  
-      </div>
+  @foreach ($comments as $comment)
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img alt="64x64" width="64" height="64" class="media-object" data-src="{{ asset('/front/img/user.png') }}"
+                    src="{{ asset('/front/img/user.png') }}" data-holder-rendered="true">
+            </a>
+        </div>
+        <div class="media-body">
+            <h2 class="media-heading"><a href="#">{{ $comment->name }}</a></h2>
+            {{ $comment->comment }}
+        </div>
+
+    </div>
+  @endforeach
+      
       <!-- media end -->
   
-      <div class="media">
-          <div class="media-left">
-              <a href="#">
-                  <img alt="64x64" class="media-object" data-src="{{asset('front/img/reader_img3.jpg')}}"
-                       src="{{asset('front/img/reader_img3.jpg')}}" data-holder-rendered="true">
-              </a>
-          </div>
-          <div class="media-body">
-              <h2 class="media-heading"><a href="#">S. Joshep</a></h2>
-              But who has any right to find fault with a man who chooses to enjoy a pleasure that has
-              no annoying consequences, or one who avoids a pain that produces no resultant pleasure?
-  
-              <div class="entity_vote">
-                  <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                  <a href="#"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                  <a href="#"><span class="reply_ic">Reply </span></a>
-              </div>
-          </div>
-      </div>
-      <!-- media end -->
   </div>
   <!--Readers Comment-->
-  
-  <div class="widget_advertisement">
-      <img class="img-responsive" src="{{asset('front/img/category_advertisement.jpg')}}" alt="feature-top">
-  </div>
-  <!--Advertisement-->
+ 
   
   <div class="entity_comments">
       <div class="entity_inner__title header_black">
@@ -308,91 +162,37 @@
   <!--Left Section-->
   
   <div class="col-md-4">
-  <div class="widget">
-      <div class="widget_title widget_black">
-          <h2><a href="#">Popular News</a></h2>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right1.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">Canon launches photo centric 00214 Model supper shutter camera</a>
-              </h3> <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-  
-              <div class="widget_article_social">
-                  <span>
-                      <a href="single.html" target="_self"> <i class="fa fa-share-alt"></i>424</a> Shares
-                  </span> 
-                  <span>
-                      <a href="single.html" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
+    <div class="widget">
+        <div class="widget_title widget_black">
+            <h2><a href="#">Most Views</a></h2>
+        </div>
+        @foreach ($shareData['most_viewed'] as $most_view)
+          <div class="media">
+              <div class="media-left">
+                  <a href="{{ url('/details') }}/{{ $most_view->slug }}"><img class="media-object" src="{{ asset('/posts') }}/{{ $most_view->thumb_image }}" alt="Generic placeholder image"></a>
+              </div>
+              <div class="media-body">
+                  <h3 class="media-heading">
+                      <a href="{{ url('/details') }}/{{ $most_view->slug }}">{{ $most_view->title}}</a>
+                  </h3> 
+                  <span class="media-date">
+                      <a href="#">{{ date('j F -y', strtotime($most_view->created_at)) }}</a>,  by: <a href="{{ url('/author') }}/{{ $most_view->creator->id }}">{{ $most_view->creator->name }}</a>
                   </span>
+      
+                  <div class="widget_article_social">
+                      <span>
+                          <a href="{{ url('/details') }}/{{ $most_view->slug }}"> <i class="fa fa-eye"></i>{{ $most_view->view_count }}</a> Views
+                      </span> 
+                      <span>
+                          <a href="{{ url('/details') }}/{{ $most_view->slug }}"><i class="fa fa-comments-o"></i>{{ count($most_view->comments) }}</a> Comments
+                      </span>
+                  </div>
               </div>
           </div>
+        @endforeach
+        
+        <p class="widget_divider"><a href="#">More News&nbsp;&raquo;</a></p>
       </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right2.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">Samsung galaxy note are the supper mobile of all products.</a>
-              </h3>
-              <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-  
-              <div class="widget_article_social">
-                  <span>
-                      <a href="single.html" target="_self"> <i class="fa fa-share-alt"></i>424</a> Shares
-                  </span> 
-                  <span>
-                      <a href="single.html" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
-                  </span>
-              </div>
-          </div>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right3.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">Apple launches photo-centric wrist watch for Android</a>
-              </h3>
-              <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-  
-              <div class="widget_article_social">
-                  <span>
-                      <a href="single.html" target="_self"> <i class="fa fa-share-alt"></i>424</a> Shares
-                  </span> 
-                  <span>
-                      <a href="single.html" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
-                  </span>
-              </div>
-          </div>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right4.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">Kodak Hi-Speed shutter double shot camera comming soon</a>
-              </h3>
-              <span class="media-date"><a href="#">10Aug- 2015</a>,  by: <a href="#">Eric joan</a></span>
-  
-              <div class="widget_article_social">
-                  <span>
-                      <a href="single.html" target="_self"><i class="fa fa-share-alt"></i>424</a> Shares
-                  </span> 
-                  <span>
-                      <a href="single.html" target="_self"><i class="fa fa-comments-o"></i>4</a> Comments
-                  </span>
-              </div>
-          </div>
-      </div>
-      <p class="widget_divider"><a href="#" target="_self">More News&nbsp;&raquo;</a></p>
-  </div>
   <!-- Popular News -->
   
   <div class="widget hidden-xs m30">
@@ -408,190 +208,32 @@
   </div>
   <!-- Advertisement -->
   
-  <div class="widget reviews m30">
-      <div class="widget_title widget_black">
-          <h2><a href="#">Reviews</a></h2>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right1.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">DSLR is the most old camera at this time readmore about new
-                      products</a>
-              </h3> 
-              <span class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-full"></i>
-              </span>
-          </div>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right2.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body"><h3 class="media-heading"><a href="single.html" target="_self">Samsung is the best
-              mobile in the android market.</a></h3> <span class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-full"></i>
-              </span></div>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right3.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">Apple launches photo-centric wrist watch for Android</a>
-              </h3> 
-              <span class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-full"></i>
-              </span></div>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right4.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">Yasaki camera launches new generic hi-speed shutter camera.</a>
-              </h3> 
-              <span class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-full"></i>
-              </span></div>
-      </div>
-      <p class="widget_divider"><a href="#" target="_self">More News&nbsp;&raquo;</a></p>
-  </div>
-  <!-- Reviews News -->
-  
-  <div class="widget hidden-xs m30">
-      <img class="img-responsive widget_img" src="{{asset('front/img/right_add6.jpg')}}" alt="add_one">
-  </div>
-  <!-- Advertisement -->
   
   <div class="widget m30">
-      <div class="widget_title widget_black">
-          <h2><a href="#">Most Commented</a></h2>
-      </div>
+    <div class="widget_title widget_black">
+        <h2><a href="#">Most Commented</a></h2>
+    </div>
+    @foreach ($shareData['most_commented'] as $most_commented)
       <div class="media">
           <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right1.jpg')}}" alt="Generic placeholder image"></a>
+              <a href="{{ url('/details') }}/{{ $most_commented->slug }}"><img class="media-object" src="{{ asset('/posts') }}/{{ $most_commented->thumb_image }}" alt="Generic placeholder image"></a>
           </div>
           <div class="media-body">
               <h3 class="media-heading">
-                  <a href="single.html" target="_self">Yasaki camera launches new generic hi-speed shutter camera.</a>
+                  <a href="{{ url('/details') }}/{{ $most_commented->slug }}">{{ $most_commented->title}}</a>
               </h3>
   
               <div class="media_social">
-                  <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
+                  <span><i class="fa fa-comments-o"></i><a href="{{ url('/details') }}/{{ $most_commented->slug }}"> {{ $most_commented->comments_count}} </a> Comments</span>
               </div>
           </div>
       </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right2.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">Samsung is the best mobile in the android market.</a>
-              </h3>
-  
-              <div class="media_social">
-                  <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-              </div>
-          </div>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right3.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">Apple launches photo-centric wrist watch for Android</a>
-              </h3>
-  
-              <div class="media_social">
-                  <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-              </div>
-          </div>
-      </div>
-      <div class="media">
-          <div class="media-left">
-              <a href="#"><img class="media-object" src="{{asset('front/img/pop_right4.jpg')}}" alt="Generic placeholder image"></a>
-          </div>
-          <div class="media-body">
-              <h3 class="media-heading">
-                  <a href="single.html" target="_self">DSLR is the most old camera at this time readmore about new
-                      products</a>
-              </h3>
-  
-              <div class="media_social">
-                  <span><i class="fa fa-comments-o"></i><a href="#">4</a> Comments</span>
-              </div>
-          </div>
-      </div>
-      <p class="widget_divider"><a href="#" target="_self">More News&nbsp;&nbsp;&raquo; </a></p>
+    @endforeach
+    
+    <p class="widget_divider"><a href="#">More News&nbsp;&nbsp;&raquo; </a></p>
   </div>
   <!-- Most Commented News -->
-  
-  <div class="widget m30">
-      <div class="widget_title widget_black">
-          <h2><a href="#">Editor Corner</a></h2>
-      </div>
-      <div class="widget_body"><img class="img-responsive left" src="{{asset('front/img/editor.jpg')}}"
-                                    alt="Generic placeholder image">
-  
-          <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C
-              users after installed base benefits. Dramatically visualize customer directed convergence without</p>
-  
-          <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C
-              users after installed base benefits. Dramatically visualize customer directed convergence without
-              revolutionary ROI.</p>
-          <button class="btn pink">Read more</button>
-      </div>
-  </div>
-  <!-- Editor News -->
-  
-  <div class="widget hidden-xs m30">
-      <img class="img-responsive add_img" src="{{asset('front/img/right_add7.jpg')}}" alt="add_one">
-      <img class="img-responsive add_img" src="{{asset('front/img/right_add7.jpg')}}" alt="add_one">
-      <img class="img-responsive add_img" src="{{asset('front/img/right_add7.jpg')}}" alt="add_one">
-      <img class="img-responsive add_img" src="{{asset('front/img/right_add7.jpg')}}" alt="add_one">
-  </div>
-  <!--Advertisement -->
-  
-  <div class="widget m30">
-      <div class="widget_title widget_black">
-          <h2><a href="#">Readers Corner</a></h2>
-      </div>
-      <div class="widget_body"><img class="img-responsive left" src="{{asset('front/img/reader.jpg')}}"
-                                    alt="Generic placeholder image">
-  
-          <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C
-              users after installed base benefits. Dramatically visualize customer directed convergence without</p>
-  
-          <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C
-              users after installed base benefits. Dramatically visualize customer directed convergence without
-              revolutionary ROI.</p>
-          <button class="btn pink">Read more</button>
-      </div>
-  </div>
-  <!--  Readers Corner News -->
+ 
   
   <div class="widget hidden-xs m30">
       <img class="img-responsive widget_img" src="{{asset('front/img/podcast.jpg')}}" alt="add_one">
