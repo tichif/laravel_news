@@ -14,7 +14,7 @@
 Route::get('/','HomePageController@index');
 // Route::get('/listing','ListingPageController@index');
 Route::get('/category/{id}','ListingPageController@index');
-Route::get('/author/{id}','ListingPageController@index');
+Route::get('/author/{id}','ListingPageController@author');
 Route::get('/details/{slug}', 'DetailsPageController@index');
 // Route::get('/details','DetailsPageController@index');
 Route::post('/comments', 'DetailsPageController@comment');

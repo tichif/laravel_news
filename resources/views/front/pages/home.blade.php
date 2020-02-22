@@ -109,7 +109,7 @@
 <div class="row">
 <div class="col-md-8">
 <div class="category_section mobile">
-@foreach ($category_posts as $category)
+@foreach ($shareData['categories'] as $category)
     @foreach ($category->posts as $key=>$item)
     @if ($key === 0)
   <div class="article_title header_purple">
