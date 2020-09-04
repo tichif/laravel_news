@@ -2580,6 +2580,7 @@
                 "php": ">=5.3.3",
                 "symfony/polyfill-intl-normalizer": "^1.10",
                 "symfony/polyfill-php70": "^1.10",
+
                 "symfony/polyfill-php72": "^1.10"
             },
             "suggest": {
@@ -2593,6 +2594,7 @@
                 "thanks": {
                     "name": "symfony/polyfill",
                     "url": "https://github.com/symfony/polyfill"
+
                 }
             },
             "autoload": {
@@ -2740,6 +2742,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/a6977d63bf9a0ad4c65cd352709e230876f9904a",
                 "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a",
+
                 "shasum": ""
             },
             "require": {
@@ -2894,6 +2897,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/639447d008615574653fb3bc60d1986d7172eaae",
                 "reference": "639447d008615574653fb3bc60d1986d7172eaae",
+
                 "shasum": ""
             },
             "require": {
@@ -2907,6 +2911,7 @@
                 "thanks": {
                     "name": "symfony/polyfill",
                     "url": "https://github.com/symfony/polyfill"
+
                 }
             },
             "autoload": {
